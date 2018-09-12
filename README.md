@@ -11,6 +11,14 @@ For now the litex project is heavilly based on the yetifrisstlama
 github repository called `litex_test_project` available here:
 https://github.com/yetifrisstlama/litex_test_project
 
+## Prerequisites
+
+You must have the following installed in yout base system:
+
+    - docker >= 17.09.0
+    - docker-compose >= 1.17.0
+    - Xilinx Vivado 2018.2 installed in /opt/Xilinx
+
 ## Build example project
 
 Be sure to clone this repository with: `--recursive` or `--recurse-submodules`:
