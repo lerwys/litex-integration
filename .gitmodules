@@ -1,0 +1,3 @@
+[submodule "submodules/docker-litex-env-composed"]
+	path = submodules/docker-litex-env-composed
+	url = https://github.com/lerwys/docker-litex-env-composed
