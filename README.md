@@ -9,7 +9,7 @@ Litex integration.
 
 For now the litex project is heavilly based on the yetifrisstlama
 github repository called `litex_test_project` available here:
-`https://github.com/yetifrisstlama/litex_test_project`
+https://github.com/yetifrisstlama/litex_test_project
 
 ## Build example project
 
