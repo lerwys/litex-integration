@@ -30,5 +30,14 @@ Be sure to clone this repository with: `--recursive` or `--recurse-submodules`:
 Build example project:
 
 ```bash
-    docker-compose -f submodules/docker-litex-env-composed/docker-compose.yml run --rm -v "$PWD"/litex-integration:/litex-integration litex-env python3 /litex-integration/base_cpu.py build
+    make run
+```
+
+The results will be at `build` directory. The Makefile basically contains
+docker-compose commands with the appropriate flags .
+
+To remove the generated files, run:
+
+```bash
+    make clean
 ```
