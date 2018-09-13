@@ -71,6 +71,9 @@ if __name__ == '__main__':
     elif argv[1] == "build_lib":
         builder = Builder(soc, output_dir="build", compile_gateware=False, compile_software=True)
         builder.build()
+    elif argv[1] == "gen_hdl":
+        builder = Builder(soc, output_dir="build", compile_gateware=False, compile_software=False)
+        builder.build()
     elif argv[1] == "config":
         prog = platform.create_programmer()
         prog.load_bitstream("build/gateware/top.bit")
