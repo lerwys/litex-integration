@@ -2,10 +2,14 @@ DOCKER_LITEX_ENV_COMPOSE_FILE=submodules/docker-litex-env-composed/docker-compos
 USER_ID=$(shell id -u ${USER})
 # This is the home created inside the image
 IMAGE_HOME=/home/user
+# Submodules folder
+SUBMODULES=submodules
+# Litex env composed
+LITEX_ENV_COMPOSED_REPO=docker-litex-env-composed
 
-.PHONY: run prepare-env clean
+.PHONY: run prepare-env clean sanity
 
-run: prepare-env
+run: sanity prepare-env
 	docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
 		run \
 		--rm \
@@ -14,6 +18,12 @@ run: prepare-env
 		-v "${PWD}"/build:/build \
 		litex-env \
 		python3 /litex-integration/base_cpu.py build
+
+# Check if repo was cloned --recursive
+sanity:
+	if [ -z "$(shell ls -A $(SUBMODULES)/$(LITEX_ENV_COMPOSED_REPO))" ]; then \
+		git submodule update --init; \
+	fi
 
 prepare-env:
 	mkdir -p build
