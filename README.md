@@ -19,6 +19,23 @@ You must have the following installed in yout base system:
     - docker-compose >= 1.17.0
     - Xilinx Vivado 2018.2 installed in /opt/Xilinx
 
+## Usage
+
+The idea of this project is to be used as a template to work with
+Litex environment tools in a reproducible way. So, basically,
+one would have all of the litex project sources inside `litex-intergration`
+directory and the result of that would be generated at the `build`
+directory, available in the host machine after the container finishes.
+
+Everything inside `litex-intergration` directory will be bind mounted
+to the `/litex-intergration` inside the cointainer. The developer can
+then run the desired command when running the container.
+
+As an example, the Makefile contains the necessary `docker-compose`
+flags to run the litex environment, bind mount the directories
+and run the base_cpu.oy litex python command to generate all of the
+gaetware and software.
+
 ## Build example project
 
 Be sure to clone this repository with: `--recursive` or `--recurse-submodules`:
