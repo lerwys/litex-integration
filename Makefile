@@ -6,6 +6,8 @@ IMAGE_HOME=/home/user
 SUBMODULES=submodules
 # Litex env composed
 LITEX_ENV_COMPOSED_REPO=docker-litex-env-composed
+# Passed to litex top-level script
+ACTION?=build
 
 # Variables passed to docker-compose
 # Xilinx PATH
@@ -25,7 +27,7 @@ run: sanity prepare-env
 		-v "${PWD}"/litex-integration:/litex-integration \
 		-v "${PWD}"/build:/build \
 		litex-env \
-		python3 /litex-integration/base_cpu.py build"
+		python3 /litex-integration/base_cpu.py $(ACTION)"
 
 # Check if repo was cloned --recursive
 sanity:
