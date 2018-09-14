@@ -13,7 +13,7 @@ ACTION?=build
 # Xilinx PATH
 XIL_PATH?=/opt/Xilinx
 # Vivado version
-VIVADO_VER?=2018.5
+VIVADO_VER?=2018.2
 
 .PHONY: run prepare-env clean sanity
 
