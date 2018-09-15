@@ -12,11 +12,18 @@
 from migen import *
 from litex_contrib.boards.platforms.cmod_a7 import Platform
 from litex.build.generic_platform import *
+#from litex_contrib.soc.integration.soc_generic import *
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 from litex.soc.cores import dna, xadc
 from sys import argv, exit
 
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'modules', 'wb_leds', 'data')))
+
+# Now do your import
+from litex_wrap import wb_leds
 
 def csr_map_update(csr_map, csr_peripherals):
     csr_map.update(dict((n, v)
@@ -24,29 +31,31 @@ def csr_map_update(csr_map, csr_peripherals):
 
 # create our soc (fpga description)
 class BaseSoC(SoCCore):
-    # Peripherals CSR declaration
+    ## Peripherals CSR declaration
     csr_peripherals = [
         "dna",
-        "xadc",
-        "rgbled",
-        "leds",
-        # "switches",
-        "buttons"
-        # "adxl362",
-        # "display"
     ]
     csr_map_update(SoCCore.csr_map, csr_peripherals)
+
+    mem_map = {
+        "wb_leds": 0x30000000
+    }
+    mem_map.update(SoCCore.mem_map)
 
     def __init__(self, platform, **kwargs):
         sys_clk_freq = int(12e6)
         # SoC init (No CPU, we controlling the SoC with UART)
         SoCCore.__init__(self, platform, sys_clk_freq,
-            # cpu_type="vexriscv",
             cpu_type="picorv32",
             csr_data_width=32,
-            integrated_rom_size=0x8000,
-            integrated_main_ram_size=16 * 1024,
-            ident="Wir trampeln durchs Getreide ...", ident_version=True
+            integrated_rom_size=1024,
+            integrated_sram_size=2014,
+            integrated_main_ram_size=0,
+            with_uart=False,
+            ident=None, ident_version=False,
+            reserve_nmi_interrupt=True,
+            with_timer=False,
+            with_ctrl=False
         )
 
         # Clock Reset Generation
@@ -55,9 +64,9 @@ class BaseSoC(SoCCore):
         # FPGA identification
         self.submodules.dna = dna.DNA()
 
-        # FPGA Temperature/Voltage
-        self.submodules.xadc = xadc.XADC()
-
+        # wb leds
+        self.submodules.wb_leds = wb_leds.WB_LEDS(platform)
+        self.add_wb_slave(mem_decoder(self.mem_map["wb_leds"]), self.wb_leds.wishbone)
 
 if __name__ == '__main__':
     platform = Platform()
