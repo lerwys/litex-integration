@@ -1,0 +1,10 @@
+memory-map:
+  bus: wb-32-be
+  name: wb_leds_csr
+  description: LEDs Register Bank
+  children:
+    - reg:
+        name: leds
+        width: 32
+        access: rw
+        type: unsigned

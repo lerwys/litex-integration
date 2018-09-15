@@ -1,0 +1,37 @@
+CAPI=2:
+
+name: ::wb_leds:0
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_leds.v
+      - data/wb_leds_csr.v
+    file_type: verilogSource
+    depend:
+      - wbgen2_dpssram
+
+  tb:
+    files:
+      - bench/wb_leds_tb.v: {file_type : verilogSource}
+    depend:
+      - vlog_tb_utils
+      - wb_bfm
+
+targets:
+  default:
+    filesets: [rtl]
+  sim:
+    default_tool: icarus
+    filesets: [rtl, tb]
+    tools:
+      modelsim:
+        vlog_options: [-timescale=1ns/1ns]
+      xsim:
+        xelab_options: [--timescale=1ns/1ns]
+    toplevel: [wb_leds_tb]
+
+provider:
+  name: cheby
+  core_file: data/wb_leds_csr.yml
+  generated_file_type: verilogSource
