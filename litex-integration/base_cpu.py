@@ -65,7 +65,8 @@ class BaseSoC(SoCCore):
         self.submodules.dna = dna.DNA()
 
         # wb leds
-        self.submodules.wb_leds = wb_leds.WB_LEDS(platform)
+        user_leds = Cat(*[platform.request("user_led") for i in range(2)])
+        self.submodules.wb_leds = wb_leds.WB_LEDS(platform, user_leds)
         self.add_wb_slave(mem_decoder(self.mem_map["wb_leds"]), self.wb_leds.wishbone)
 
 if __name__ == '__main__':
