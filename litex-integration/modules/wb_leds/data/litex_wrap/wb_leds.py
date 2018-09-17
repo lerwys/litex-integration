@@ -6,9 +6,11 @@ from litex.soc.interconnect import wishbone
 
 
 class WB_LEDS(Module):
-    def __init__(self, platform):
+    def __init__(self, platform, pads):
         self.reset = Signal()
         self.wishbone = wb = wishbone.Interface()
+
+        self.leds = Signal(len(pads))
 
         # # #
 
@@ -28,7 +30,12 @@ class WB_LEDS(Module):
             o_wb_ack_o=wb.ack,
             o_wb_err_o=wb.err,
             o_wb_rty_o=0,
+
+            o_leds_o=self.leds,
         )
+
+        # assignements
+        self.comb += pads.eq(self.leds)
 
         # add verilog sources
         self.add_sources(platform)
