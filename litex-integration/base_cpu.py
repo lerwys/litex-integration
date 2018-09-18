@@ -72,7 +72,7 @@ class BaseSoC(SoCCore):
         self.add_wb_slave(mem_decoder(self.mem_map["wb_leds"]), self.wb_leds.wishbone)
 
 if __name__ == '__main__':
-    platform = Platform()
+    platform = Platform(programmer="vivado")
     soc = BaseSoC(platform)
     if len(argv) != 2:
         print(__doc__)
