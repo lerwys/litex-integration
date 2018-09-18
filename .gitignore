@@ -1,0 +1,18 @@
+*~
+*.swp
+tags
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.installed.cfg
+*.egg
+
+#C
+*.o
+*.d
+*.lst
+*.elf
+*.bin
