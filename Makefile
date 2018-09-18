@@ -26,7 +26,8 @@ DOCKER_IMAGE="litex-env"
 .PHONY: run prepare-env clean sanity
 
 run: sanity prepare-env
-	bash -c "export XIL_PATH=$(XIL_PATH) && \
+	bash -c " \
+		export XIL_PATH=$(XIL_PATH) && \
 		export VIVADO_VER=$(VIVADO_VER) && \
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
 		run \
@@ -38,7 +39,8 @@ run: sanity prepare-env
 		python3 /litex-integration/base_cpu.py $(ACTION)"
 
 %.bin:
-	bash -c "export XIL_PATH=$(XIL_PATH) && \
+	bash -c " \
+		export XIL_PATH=$(XIL_PATH) && \
 		export VIVADO_VER=$(VIVADO_VER) && \
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
 		run \
@@ -50,7 +52,8 @@ run: sanity prepare-env
 		make -C /litex-integration/firmware all"
 
 download_%: $(FIRMWARE_DIR)/%.bin
-	bash -c "export XIL_PATH=$(XIL_PATH) && \
+	bash -c " \
+		export XIL_PATH=$(XIL_PATH) && \
 		export VIVADO_VER=$(VIVADO_VER) && \
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
 		run \
