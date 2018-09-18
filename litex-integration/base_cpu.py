@@ -48,7 +48,8 @@ class BaseSoC(SoCCore):
         sys_clk_freq = int(12e6)
         # SoC init
         SoCCore.__init__(self, platform, sys_clk_freq,
-            cpu_type="picorv32",
+#            cpu_type="picorv32",
+            cpu_type="vexriscv",
             csr_data_width=32,
 #            shadow_base=0x00000000,
             integrated_rom_size=32768,
