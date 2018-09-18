@@ -46,18 +46,18 @@ class BaseSoC(SoCCore):
 
     def __init__(self, platform, **kwargs):
         sys_clk_freq = int(12e6)
-        # SoC init (No CPU, we controlling the SoC with UART)
+        # SoC init
         SoCCore.__init__(self, platform, sys_clk_freq,
             cpu_type="picorv32",
             csr_data_width=32,
-            integrated_rom_size=1024,
-            integrated_sram_size=2014,
-            integrated_main_ram_size=0,
-            with_uart=False,
+            shadow_base=0x00000000,
+            integrated_rom_size=32768,
+            integrated_main_ram_size=16384,
+            with_uart=True,
             ident=None, ident_version=False,
-            reserve_nmi_interrupt=True,
-            with_timer=False,
-            with_ctrl=False
+            reserve_nmi_interrupt=False,
+            with_timer=True,
+            with_ctrl=True
         )
 
         # Clock Reset Generation
