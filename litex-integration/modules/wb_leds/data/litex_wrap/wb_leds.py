@@ -24,8 +24,6 @@ class WB_LEDS(Module):
             i_wb_cyc_i=wb.cyc,
             i_wb_stb_i=wb.stb,
             i_wb_we_i=wb.we,
-            i_wb_cti_i=wb.cti,
-            i_wb_bte_i=wb.bte,
             o_wb_dat_o=wb.dat_r,
             o_wb_ack_o=wb.ack,
             o_wb_err_o=wb.err,
