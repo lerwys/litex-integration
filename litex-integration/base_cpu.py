@@ -14,7 +14,6 @@
 from migen import *
 from litex_contrib.boards.platforms.cmod_a7 import Platform
 from litex.build.generic_platform import *
-#from litex_contrib.soc.integration.soc_generic import *
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 from litex.soc.cores import dna, xadc
