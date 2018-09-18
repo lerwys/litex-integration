@@ -34,12 +34,13 @@ def csr_map_update(csr_map, csr_peripherals):
 class BaseSoC(SoCCore):
     ## Peripherals CSR declaration
     csr_peripherals = [
+        "wb_leds",
         "dna",
     ]
     csr_map_update(SoCCore.csr_map, csr_peripherals)
 
     mem_map = {
-        "wb_leds": 0x30000000
+        "wb_leds": 0x50000000
     }
     mem_map.update(SoCCore.mem_map)
 
