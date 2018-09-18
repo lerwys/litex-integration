@@ -50,14 +50,14 @@ class BaseSoC(SoCCore):
         SoCCore.__init__(self, platform, sys_clk_freq,
             cpu_type="picorv32",
             csr_data_width=32,
-            shadow_base=0x00000000,
+#            shadow_base=0x00000000,
             integrated_rom_size=32768,
             integrated_main_ram_size=16384,
-            with_uart=True,
-            ident=None, ident_version=False,
-            reserve_nmi_interrupt=False,
-            with_timer=True,
-            with_ctrl=True
+#            with_uart=True,
+            ident="Test Proj", ident_version=True,
+#            reserve_nmi_interrupt=True,
+#            with_timer=True,
+#            with_ctrl=True
         )
 
         # Clock Reset Generation
