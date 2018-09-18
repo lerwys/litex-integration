@@ -46,7 +46,7 @@ class WB_LEDS(Module):
                 "wb_leds.v",
         )
         vhddir = os.path.join(
-            os.path.abspath(os.path.dirname(__file__)), "../..")
+            os.path.abspath(os.path.dirname(__file__)), "../../data")
         platform.add_sources(vhddir,
                 "wb_leds_csr.vhd",
                 "wb_leds_csr_wbgen.vhd",
