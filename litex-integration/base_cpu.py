@@ -3,9 +3,11 @@
     python base_cpu.py <param>
 
     build:
-        Synthesize / compile:
+        Synthesize / compile
     build_lib:
-        Recompile C support libraries:
+        Recompile C support libraries
+    gen_hdl:
+        Generate HDL
     config:
         Load bitfile into fpga
 """
