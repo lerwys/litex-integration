@@ -29,6 +29,18 @@ run: sanity prepare-env
 		litex-env \
 		python3 /litex-integration/base_cpu.py $(ACTION)"
 
+firmware: run
+	bash -c "export XIL_PATH=$(XIL_PATH) && \
+		export VIVADO_VER=$(VIVADO_VER) && \
+		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
+		run \
+		--rm \
+		-e LOCAL_USER_ID=$(USER_ID) \
+		-v "${PWD}"/litex-integration:/litex-integration \
+		-v "${PWD}"/build:/build \
+		litex-env \
+		make -C /litex-integration/firmware all"
+
 # Check if repo was cloned --recursive
 sanity:
 	if [ -z "$(shell ls -A $(SUBMODULES)/$(LITEX_ENV_COMPOSED_REPO))" ]; then \
