@@ -6,6 +6,9 @@ IMAGE_HOME=/home/user
 SUBMODULES=submodules
 # Litex env composed
 LITEX_ENV_COMPOSED_REPO=docker-litex-env-composed
+# Firmware folder
+FIRMWARE_DIR=litex-integration/firmware
+
 # Passed to litex top-level script
 ACTION?=build_lib
 # TTY device
@@ -34,7 +37,7 @@ run: sanity prepare-env
 		$(DOCKER_IMAGE) \
 		python3 /litex-integration/base_cpu.py $(ACTION)"
 
-firmware: run
+%.bin:
 	bash -c "export XIL_PATH=$(XIL_PATH) && \
 		export VIVADO_VER=$(VIVADO_VER) && \
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
@@ -46,7 +49,7 @@ firmware: run
 		$(DOCKER_IMAGE) \
 		make -C /litex-integration/firmware all"
 
-download_firmware:
+download_%: $(FIRMWARE_DIR)/%.bin
 	bash -c "export XIL_PATH=$(XIL_PATH) && \
 		export VIVADO_VER=$(VIVADO_VER) && \
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
