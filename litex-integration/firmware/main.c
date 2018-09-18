@@ -6,7 +6,7 @@
 
 #define LEDS_ADDR 0x50000000
 
-static void delay(int x)
+static int delay(int x)
 {
     // FIXME. RiscV specific
     while(x--) {
