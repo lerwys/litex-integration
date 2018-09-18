@@ -7,7 +7,7 @@ SUBMODULES=submodules
 # Litex env composed
 LITEX_ENV_COMPOSED_REPO=docker-litex-env-composed
 # Passed to litex top-level script
-ACTION?=build
+ACTION?=build_lib
 
 # Variables passed to docker-compose
 # Xilinx PATH
