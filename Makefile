@@ -17,6 +17,9 @@ XIL_PATH?=/opt/Xilinx
 # Vivado version
 VIVADO_VER?=2018.2
 
+DOCKER_IMAGE="litex-env"
+# Docker command defualt options
+
 .PHONY: run prepare-env clean sanity
 
 run: sanity prepare-env
@@ -28,7 +31,7 @@ run: sanity prepare-env
 		-e LOCAL_USER_ID=$(USER_ID) \
 		-v "${PWD}"/litex-integration:/litex-integration \
 		-v "${PWD}"/build:/build \
-		litex-env \
+		$(DOCKER_IMAGE) \
 		python3 /litex-integration/base_cpu.py $(ACTION)"
 
 firmware: run
@@ -40,7 +43,7 @@ firmware: run
 		-e LOCAL_USER_ID=$(USER_ID) \
 		-v "${PWD}"/litex-integration:/litex-integration \
 		-v "${PWD}"/build:/build \
-		litex-env \
+		$(DOCKER_IMAGE) \
 		make -C /litex-integration/firmware all"
 
 download_firmware:
@@ -52,7 +55,7 @@ download_firmware:
 		--entrypoint "/bin/bash" \
 		-v "${PWD}"/litex-integration:/litex-integration \
 		-v "${PWD}"/build:/build \
-		litex-env \
+		$(DOCKER_IMAGE) \
 		python3 /litex/litex/litex/soc/tools/litex_term.py \
 			--kernel \
 			--serial-boot \
