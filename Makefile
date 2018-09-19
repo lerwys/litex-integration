@@ -58,15 +58,14 @@ download_%: $(FIRMWARE_DIR)/%.bin
 		docker-compose -f $(DOCKER_LITEX_ENV_COMPOSE_FILE) \
 		run \
 		--rm \
-		--entrypoint "/bin/bash" \
+		--entrypoint '/bin/bash -c' \
 		-v "${PWD}"/litex-integration:/litex-integration \
 		-v "${PWD}"/build:/build \
 		$(DOCKER_IMAGE) \
-		python3 /litex/litex/litex/soc/tools/litex_term.py \
+		\"python3 /litex/litex/litex/soc/tools/litex_term.py \
 			--kernel \
-			--serial-boot \
 			/litex-integration/firmware/firmware.bin \
-			$(TTY_DEV)"
+			$(TTY_DEV)\""
 
 # Check if repo was cloned --recursive
 sanity:
