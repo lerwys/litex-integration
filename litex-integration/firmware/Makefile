@@ -28,7 +28,7 @@ $(TARGET).elf: $(OBJECTS)
 	chmod -x $@
 
 %.lst: %.elf
-	riscv32-unknown-elf-objdump -d $^ > $@
+	$(TARGET_PREFIX)objdump -d $^ > $@
 
 %.o: %.c
 	$(compile)
