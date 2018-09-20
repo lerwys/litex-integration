@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <console.h>
 #include <generated/csr.h>
 
 #define LEDS_ADDR 0xF0000000
