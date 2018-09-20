@@ -6,14 +6,9 @@
 
 #define LEDS_ADDR 0xF0000000
 
-static int delay(int x)
+static int delay(volatile int x)
 {
-    // FIXME. RiscV specific
-    while(x--) {
-        __asm__ volatile (
-            "addi   x0, x0, 0\n\t"
-        );
-    }
+    while(x--);
     return 0;
 }
 
