@@ -4,7 +4,7 @@
 #include <console.h>
 #include <generated/csr.h>
 
-#define LEDS_ADDR 0x50000000
+#define LEDS_ADDR 0xF0000000
 
 static int delay(int x)
 {
