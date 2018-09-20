@@ -5,7 +5,7 @@ include $(SOC_DIRECTORY)/software/common.mak
 
 TARGET   = firmware
 OBJECTS  = isr.o main.o
-LDFLAGS += --no-relax --print-memory-usage
+LDFLAGS += --no-relax
 
 all: $(TARGET).bin $(TARGET).lst
 
