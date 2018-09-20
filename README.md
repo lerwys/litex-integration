@@ -44,10 +44,16 @@ Be sure to clone this repository with: `--recursive` or `--recurse-submodules`:
     git clone --recurse-submodules https://github.com/lerwys/litex-intergration
 ```
 
-Build example project:
+Build project example (resulting in a .bit file):
 
 ```bash
-    make run
+    make ACTION=build run
+```
+
+Alternatively you can just generate the Verilog HDL from Litex/Migen description:
+
+```bash
+    make ACTION=gen_hdl run
 ```
 
 The results will be at `build` directory. The Makefile basically contains
@@ -57,4 +63,24 @@ To remove the generated files, run:
 
 ```bash
     make clean
+```
+
+Download the bitstream into the FPGA:
+
+```bash
+    make ACTION=config run
+```
+
+Additionally you can compile and download an example software into the soft-core CPU.
+
+To compile the software:
+
+```bash
+    make firmware.bin
+```
+
+Download the firmware:
+
+```bash
+    make download_firmware
 ```
