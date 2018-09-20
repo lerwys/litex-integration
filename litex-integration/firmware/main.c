@@ -22,9 +22,9 @@ int main (void)
     int i;
     int leds;
     while (1) {
-        for (i = 0, leds = 1; i < 2; ++i) {
+        for (i = 0, leds = 0; i < 4; ++i) {
             write_led (leds);
-            leds <<= 1;
+            leds++;
             // These are on avarage 4 instructions, each taking
             // 3-4 cycles to complete. So, divide the delay in
             // seconds by 16
