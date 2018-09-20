@@ -51,7 +51,6 @@ class BaseSoC(SoCCore):
 #            cpu_type="picorv32",
 #            cpu_type="vexriscv",
             cpu_type="lm32",
-            cpu_type="vexriscv",
             csr_data_width=32,
 #            shadow_base=0x00000000,
             integrated_rom_size=32768,
