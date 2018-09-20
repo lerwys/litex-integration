@@ -40,7 +40,7 @@ class BaseSoC(SoCCore):
     csr_map_update(SoCCore.csr_map, csr_peripherals)
 
     mem_map = {
-        "wb_leds": 0x50000000
+        "wb_leds": 0x70000000
     }
     mem_map.update(SoCCore.mem_map)
 
